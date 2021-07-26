@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import React, { useEffect, useState, useMemo, useCallback } from "react";
+import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 import "./App.css";
 
@@ -46,7 +47,7 @@ const App = () => {
   const [countrySearch, setCountrySearch] = useState("");
 
   const handleCountryInput = (event) => {
-    setCountryInput(event.target.value.trim());
+    setCountryInput(event.target.value);
   };
 
   const handleCountrySearch = (event) => {
@@ -57,7 +58,8 @@ const App = () => {
   if (Array.isArray(countriesInfo) && countriesInfo.length === 0)
     return (
       <div className="App">
-        <h1>Loading</h1>
+        Loading
+        <i className="fa fa-spinner fa-spin"></i>
       </div>
     );
   else
@@ -80,13 +82,17 @@ const App = () => {
               type="text"
               value={countryInput}
               onChange={handleCountryInput}
+              placeholder="Search for countries"
             />
             <button type="button" onClick={handleCountrySearch}>
-              Search
+              <i className="fa fa-search" aria-hidden="true"></i>
             </button>
           </form>
         </div>
-        <CountriesList countriesInfo={countriesInfo} filter={countrySearch} />
+        <CountriesList
+          countriesInfo={countriesInfo}
+          filter={countrySearch.trim()}
+        />
       </div>
     );
 };
@@ -152,34 +158,49 @@ const CountriesList = React.memo(({ countriesInfo, filter }) => {
   }
   return (
     <div className="CountriesList">
-      {newCountriesInfo.map((countryInfo) => (
-        <CountryInfo
-          key={
-            countryInfo.countryInfo._id === null
-              ? --missingId
-              : countryInfo.countryInfo._id
-          }
-          info={countryInfo}
-        />
-      ))}
+      {Array.isArray(newCountriesInfo) && newCountriesInfo.length !== 0 ? (
+        newCountriesInfo.map((countryInfo) => (
+          <CountryInfo
+            key={
+              countryInfo.countryInfo._id === null
+                ? --missingId
+                : countryInfo.countryInfo._id
+            }
+            countryFlag={countryInfo.countryInfo.flag}
+            countryName={countryInfo.country}
+            countryCases={countryInfo.cases}
+            countryDeaths={countryInfo.deaths}
+            countryRecovered={countryInfo.recovered}
+          />
+        ))
+      ) : (
+        <div className="CountryNotFound">Not Found</div>
+      )}
     </div>
   );
 });
 
-const CountryInfo = ({ info }) => {
-  console.log("Rendering: CountryInfo");
-  return (
-    <div className="CountryInfo">
-      <div className="CountryFlag">
-        <img src={info.countryInfo.flag} alt={info.country + " Flag"} />
+const CountryInfo = React.memo(
+  ({
+    countryFlag,
+    countryName,
+    countryCases,
+    countryDeaths,
+    countryRecovered,
+  }) => {
+    console.log("Rendering: CountryInfo");
+    return (
+      <div className="CountryInfo">
+        <div className="CountryFlag">
+          <img src={countryFlag} alt={countryName + " Flag"} />
+        </div>
+        <div className="CountryName">{countryName}</div>
+        <div className="CountryCases">{countryCases}</div>
+        <div className="CountryDeaths">{countryDeaths}</div>
+        <div className="CountryRecovered">{countryRecovered}</div>
       </div>
-      <div className="CountryName">{info.country}</div>
-      <div className="CountryCases">{info.cases}</div>
-      <div className="CountryDeaths">{info.deaths}</div>
-      <div className="CountryRecovered">{info.recovered}</div>
-      <div className="CountryUpdate">{}</div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default App;
