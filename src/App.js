@@ -22,6 +22,11 @@ const App = () => {
       .catch((error) => console.log("Error fetching data: ", error));
   };
 
+  // information about number of region
+  const searchPlaceholder = useMemo(() => {
+    return "Search " + countriesInfo.length.toString() + " regions...";
+  }, [countriesInfo]);
+
   // information about Vietnam
   const vietnamInfo = useMemo(() => {
     for (var i = 0; i < countriesInfo.length; i++)
@@ -57,42 +62,44 @@ const App = () => {
 
   if (Array.isArray(countriesInfo) && countriesInfo.length === 0)
     return (
-      <div className="App">
+      <div className="LoadingScreen">
         Loading
         <i className="fa fa-spinner fa-spin"></i>
       </div>
     );
   else
     return (
-      <div className="App">
-        <WorldInfo
-          totalCases={totalCases}
-          totalDeaths={totalDeaths}
-          totalRecovered={totalRecovered}
-        />
-        <VietnamInfo
-          cases={vietnamInfo.cases}
-          deaths={vietnamInfo.deaths}
-          recovered={vietnamInfo.recovered}
-          flag={vietnamInfo.countryInfo.flag}
-        />
-        <div className="SearchBar">
-          <form onSubmit={handleCountrySearch}>
-            <input
-              type="text"
-              value={countryInput}
-              onChange={handleCountryInput}
-              placeholder="Search for countries"
-            />
-            <button type="button" onClick={handleCountrySearch}>
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </form>
+      <div className="AppContainer">
+        <div className="App">
+          <WorldInfo
+            totalCases={totalCases}
+            totalDeaths={totalDeaths}
+            totalRecovered={totalRecovered}
+          />
+          <VietnamInfo
+            cases={vietnamInfo.cases}
+            deaths={vietnamInfo.deaths}
+            recovered={vietnamInfo.recovered}
+            flag={vietnamInfo.countryInfo.flag}
+          />
+          <div className="SearchBar">
+            <form onSubmit={handleCountrySearch}>
+              <button type="button" onClick={handleCountrySearch}>
+                <i className="fa fa-search" aria-hidden="true"></i>
+              </button>
+              <input
+                type="text"
+                value={countryInput}
+                onChange={handleCountryInput}
+                placeholder={searchPlaceholder}
+              />
+            </form>
+          </div>
+          <CountriesList
+            countriesInfo={countriesInfo}
+            filter={countrySearch.trim()}
+          />
         </div>
-        <CountriesList
-          countriesInfo={countriesInfo}
-          filter={countrySearch.trim()}
-        />
       </div>
     );
 };
@@ -101,9 +108,23 @@ const WorldInfo = React.memo(({ totalCases, totalDeaths, totalRecovered }) => {
   console.log("Rendering: WorldInfo");
   return (
     <div className="WorldInfo">
-      <div className="TotalCases">{totalCases}</div>
-      <div className="TotalDeaths">{totalDeaths}</div>
-      <div className="TotalRecovered">{totalRecovered}</div>
+      <div className="TotalCases">
+        {totalCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+      </div>
+      <div className="WorldInfoBottom">
+        <div className="TotalDeathWrapper">
+          <div className="TotalDeaths">
+            {totalDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+          <div className="TotalDeathsText">DEATHS</div>
+        </div>
+        <div className="TotalRecoveredWrapper">
+          <div className="TotalRecovered">
+            {totalRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+          <div className="TotalRecoveredText">RECOVERIES</div>
+        </div>
+      </div>
     </div>
   );
 });
@@ -113,12 +134,26 @@ const VietnamInfo = React.memo(({ cases, deaths, recovered, flag }) => {
   console.log("Rendering: VietnamInfo");
   return (
     <div className="VietnamInfo">
+      <div className="PinItem">
+        <i className="fa fa-map-marker" aria-hidden="true"></i>
+      </div>
       <div className="VietnamFlag">
         <img src={flag} alt="Vietnam Flag" />
       </div>
-      <div className="VietnamCases">{cases}</div>
-      <div className="VietnamDeaths">{deaths}</div>
-      <div className="VietnamRecovered">{recovered}</div>
+      <div className="Vietnam">Viet Nam</div>
+      <div className="VietnamCovid">
+        <div className="VietnamCases">
+          {cases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </div>
+        <div className="VietnamWrapper">
+          <div className="VietnamDeaths">
+            {deaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+          <div className="VietnamRecovered">
+            {recovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+        </div>
+      </div>
     </div>
   );
 });
@@ -159,13 +194,14 @@ const CountriesList = React.memo(({ countriesInfo, filter }) => {
   return (
     <div className="CountriesList">
       {Array.isArray(newCountriesInfo) && newCountriesInfo.length !== 0 ? (
-        newCountriesInfo.map((countryInfo) => (
+        newCountriesInfo.map((countryInfo, index) => (
           <CountryInfo
             key={
               countryInfo.countryInfo._id === null
                 ? --missingId
                 : countryInfo.countryInfo._id
             }
+            index={index}
             countryFlag={countryInfo.countryInfo.flag}
             countryName={countryInfo.country}
             countryCases={countryInfo.cases}
@@ -182,6 +218,7 @@ const CountriesList = React.memo(({ countriesInfo, filter }) => {
 
 const CountryInfo = React.memo(
   ({
+    index,
     countryFlag,
     countryName,
     countryCases,
@@ -191,13 +228,22 @@ const CountryInfo = React.memo(
     console.log("Rendering: CountryInfo");
     return (
       <div className="CountryInfo">
+        <div className="CountryIndex">{index + 1}</div>
         <div className="CountryFlag">
           <img src={countryFlag} alt={countryName + " Flag"} />
         </div>
         <div className="CountryName">{countryName}</div>
-        <div className="CountryCases">{countryCases}</div>
-        <div className="CountryDeaths">{countryDeaths}</div>
-        <div className="CountryRecovered">{countryRecovered}</div>
+        <div className="CountryCovid">
+          <div className="CountryCases">
+            {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+          <div className="CountryDeaths">
+            {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+          <div className="CountryRecovered">
+            {countryRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </div>
+        </div>
       </div>
     );
   }
