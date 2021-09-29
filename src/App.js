@@ -60,6 +60,11 @@ const App = () => {
     setCountrySearch(countryInput);
   };
 
+  const showResult = useMemo(
+    () => (countrySearch === "" ? "" : "Show Result(s) for " + countrySearch),
+    [countrySearch]
+  );
+
   if (Array.isArray(countriesInfo) && countriesInfo.length === 0)
     return (
       <div className="LoadingScreen">
@@ -95,6 +100,11 @@ const App = () => {
               />
             </form>
           </div>
+          {showResult === "" ? (
+            <div></div>
+          ) : (
+            <div className="ShowResult">{showResult}</div>
+          )}
           <CountriesList
             countriesInfo={countriesInfo}
             filter={countrySearch.trim()}
@@ -237,11 +247,15 @@ const CountryInfo = React.memo(
           <div className="CountryCases">
             {countryCases.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </div>
-          <div className="CountryDeaths">
-            {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </div>
-          <div className="CountryRecovered">
-            {countryRecovered.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          <div className="CountryWrapper">
+            <div className="CountryDeaths">
+              {countryDeaths.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </div>
+            <div className="CountryRecovered">
+              {countryRecovered
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </div>
           </div>
         </div>
       </div>
