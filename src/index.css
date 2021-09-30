@@ -1,0 +1,7 @@
+:root {
+  --main-bg-color: #f3f3f3;
+  font-family: Arial, Helvetica, sans-serif;
+  --case-color: #ec526e;
+  --recovered-color: #75baff;
+  --death-color: #000000;
+}

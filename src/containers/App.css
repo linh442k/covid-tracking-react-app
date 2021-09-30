@@ -1,0 +1,70 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+.App .AppContainer {
+  background-color: var(--main-bg-color);
+  height: 100%;
+  display: block;
+  top: 0%;
+  bottom: 0%;
+  min-width: 24rem;
+}
+
+.App .AppContainer .SearchBar {
+  background-color: #fff;
+  height: 3.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.1rem 0.1rem 0.1rem #d8d8d8;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.App .AppContainer .SearchBar form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.App .AppContainer .SearchBar button {
+  border: none;
+  background-color: #ffffff;
+  font-size: 1em;
+  padding: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 0%;
+  margin-right: 1.25rem;
+}
+.App .AppContainer .SearchBar button:hover {
+  cursor: pointer;
+}
+.App .AppContainer .SearchBar button i {
+  opacity: 0.25;
+}
+.App .AppContainer .SearchBar input[type="text"] {
+  border: none;
+  min-height: 2rem;
+  margin-left: auto;
+  width: 100%;
+  margin-right: 1.5rem;
+}
+.App .AppContainer .SearchBar input[type="text"]:focus {
+  outline: none;
+}
+.App .AppContainer .SearchBar input[type="text"]::placeholder {
+  opacity: 0.75;
+  font-size: 1.05em;
+}
+
+.App .AppContainer .ShowResult {
+  padding-left: 1.75rem;
+  padding-top: 1.25rem;
+  margin-bottom: -0.25rem;
+  font-size: 0.95em;
+}

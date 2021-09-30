@@ -1,0 +1,76 @@
+.CountryInfo {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1rem;
+  padding-bottom: 1rem;
+}
+.CountryInfo .CountryIndex {
+  color: gray;
+  font-size: 0.6em;
+  background-color: #ffffff;
+  margin-left: 1rem;
+  margin-right: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-weight: bold;
+  opacity: 0.5;
+
+  min-width: 0.65rem;
+  min-height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.CountryInfo .CountryFlag {
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 0.75rem;
+}
+.CountryInfo .CountryFlag img {
+  height: 1.4rem;
+  width: 2.25rem;
+  /* object-position: 50% 50%; */
+  object-fit: fill;
+}
+.CountryInfo .CountryName {
+  font-weight: bold;
+  font-size: 0.9em;
+  /* min-width: 5rem; */
+  max-width: 5rem;
+}
+.CountryInfo .CountryCovid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding-right: 1rem;
+  width: 40%;
+
+  font-weight: bold;
+  font-size: 0.9em;
+}
+.CountryInfo .CountryCovid .CountryCases {
+  color: var(--case-color);
+}
+.CountryInfo .CountryCovid .CountryWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.CountryInfo .CountryCovid .CountryWrapper .CountryDeaths {
+  color: var(--death-color);
+}
+.CountryInfo .CountryCovid .CountryWrapper .CountryRecovered {
+  color: var(--recovered-color);
+}

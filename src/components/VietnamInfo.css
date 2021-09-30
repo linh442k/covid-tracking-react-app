@@ -1,0 +1,57 @@
+.VietnamInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 1rem;
+  padding-bottom: 1rem;
+}
+.VietnamInfo .PinItem {
+  font-size: 1.5em;
+  background-color: #ffffff;
+  margin-left: 1rem;
+  margin-right: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.VietnamInfo .VietnamFlag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+}
+.VietnamInfo .VietnamFlag img {
+  max-width: 2.5rem;
+  height: auto;
+}
+.VietnamInfo .Vietnam {
+  font-weight: bold;
+  font-size: 0.9em;
+}
+.VietnamInfo .VietnamCovid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  padding-right: 1rem;
+  width: 40%;
+
+  font-weight: bold;
+  font-size: 0.9em;
+}
+.VietnamInfo .VietnamCovid .VietnamCases {
+  color: var(--case-color);
+}
+.VietnamInfo .VietnamCovid .VietnamWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.VietnamInfo .VietnamCovid .VietnamWrapper .VietnamDeaths {
+  color: var(--death-color);
+}
+.VietnamInfo .VietnamCovid .VietnamWrapper .VietnamRecovered {
+  color: var(--recovered-color);
+}

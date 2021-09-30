@@ -1,0 +1,43 @@
+.WorldInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.WorldInfo .TotalCases {
+  font-weight: bolder;
+  color: var(--case-color);
+  padding-top: 2rem;
+  padding-bottom: 0.75rem;
+  font-size: 2.75em;
+}
+.WorldInfo .WorldInfoBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.WorldInfo .WorldInfoBottom .TotalDeathWrapper,
+.WorldInfo .WorldInfoBottom .TotalRecoveredWrapper {
+  /* padding: 1.25rem; */
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.WorldInfo .WorldInfoBottom .TotalDeathWrapper .TotalDeaths,
+.WorldInfo .WorldInfoBottom .TotalRecoveredWrapper .TotalRecovered {
+  font-weight: bolder;
+  font-size: 1.5em;
+  color: #36363b;
+  padding-bottom: 0.25rem;
+}
+.WorldInfo .WorldInfoBottom .TotalDeathWrapper .TotalDeathsText,
+.WorldInfo .WorldInfoBottom .TotalRecoveredWrapper .TotalRecoveredText {
+  font-weight: bold;
+  opacity: 0.2;
+  font-size: 0.8em;
+}
