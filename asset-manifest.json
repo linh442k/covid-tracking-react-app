@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/covid-tracking-react-app/static/css/main.bae221a2.chunk.css",
+    "main.js": "/covid-tracking-react-app/static/js/main.7fa9533e.chunk.js",
+    "main.js.map": "/covid-tracking-react-app/static/js/main.7fa9533e.chunk.js.map",
+    "runtime-main.js": "/covid-tracking-react-app/static/js/runtime-main.29138bc7.js",
+    "runtime-main.js.map": "/covid-tracking-react-app/static/js/runtime-main.29138bc7.js.map",
+    "static/css/2.1354f6ad.chunk.css": "/covid-tracking-react-app/static/css/2.1354f6ad.chunk.css",
+    "static/js/2.445dc602.chunk.js": "/covid-tracking-react-app/static/js/2.445dc602.chunk.js",
+    "static/js/2.445dc602.chunk.js.map": "/covid-tracking-react-app/static/js/2.445dc602.chunk.js.map",
+    "static/js/3.96a0cd4c.chunk.js": "/covid-tracking-react-app/static/js/3.96a0cd4c.chunk.js",
+    "static/js/3.96a0cd4c.chunk.js.map": "/covid-tracking-react-app/static/js/3.96a0cd4c.chunk.js.map",
+    "index.html": "/covid-tracking-react-app/index.html",
+    "static/css/2.1354f6ad.chunk.css.map": "/covid-tracking-react-app/static/css/2.1354f6ad.chunk.css.map",
+    "static/css/main.bae221a2.chunk.css.map": "/covid-tracking-react-app/static/css/main.bae221a2.chunk.css.map",
+    "static/js/2.445dc602.chunk.js.LICENSE.txt": "/covid-tracking-react-app/static/js/2.445dc602.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/covid-tracking-react-app/static/media/fontawesome-webfont.f691f37e.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.29138bc7.js",
+    "static/css/2.1354f6ad.chunk.css",
+    "static/js/2.445dc602.chunk.js",
+    "static/css/main.bae221a2.chunk.css",
+    "static/js/main.7fa9533e.chunk.js"
+  ]
+}
