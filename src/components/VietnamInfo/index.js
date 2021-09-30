@@ -1,5 +1,5 @@
 import React from "react";
-import "./VietnamInfo.css";
+import "./style.css";
 // if props is vietnamInfo (object, then we should not use React.memo)
 const VietnamInfo = React.memo(({ cases, deaths, recovered, flag }) => {
   console.log("Rendering: VietnamInfo");

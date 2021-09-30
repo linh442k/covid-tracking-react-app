@@ -1,5 +1,5 @@
 import React from "react";
-import "./CountryInfo.css";
+import "./style.css";
 const CountryInfo = React.memo(
   ({
     index,

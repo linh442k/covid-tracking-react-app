@@ -1,5 +1,5 @@
 import React from "react";
-import "./WorldInfo.css";
+import "./style.css";
 const WorldInfo = React.memo(({ totalCases, totalDeaths, totalRecovered }) => {
   console.log("Rendering: WorldInfo");
   return (

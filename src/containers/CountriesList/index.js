@@ -1,6 +1,6 @@
 import React from "react";
-import "./CountriesList.css";
-import CountryInfo from "../components/CountryInfo";
+import "./style.css";
+import CountryInfo from "../../components/CountryInfo";
 const CountriesList = React.memo(({ countriesInfo, filter }) => {
   let missingId = 0;
 
